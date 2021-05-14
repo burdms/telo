@@ -1966,6 +1966,15 @@ p.personal-data input[type="checkbox"]:checked + label:before {
   display: block !important;
 }
 
+.popup_active {
+  display: block;
+}
+
+.js-no-scroll {
+  overflow-y: hidden;
+}
+
+
 @media only screen and (max-width: 1199px) {
   .services-slider .slider-arrow.prev {
     left: 25px;
