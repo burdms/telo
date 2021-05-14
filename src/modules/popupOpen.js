@@ -1,5 +1,6 @@
 import inputCheck from './inputCheck';
 import form from './form';
+import formSend from './formSend';
 
 export default function popupOpen(id) {
   document.querySelector('html').classList.add('js-no-scroll');
@@ -7,4 +8,5 @@ export default function popupOpen(id) {
 
   inputCheck(id);
   form(id);
+  formSend(id);
 }
