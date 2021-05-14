@@ -1,7 +1,6 @@
 /* eslint-disable strict */
 'use strict';
 
-import test from './modules/test';
+import head from './modules/head';
 
-console.log(1);
-test();
+head();

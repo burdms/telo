@@ -1,1 +1,1 @@
-(()=>{"use strict";console.log(1),console.log("test 1")})();
+(()=>{"use strict";!function(){const s=document.querySelector(".clubs-list ul");document.addEventListener("click",(t=>{const c=t.target;c.closest(".club-select")&&!c.closest(".clubs-list__ul_active")?s.classList.toggle("clubs-list__ul_active"):c.closest(".clubs-list__ul_active")||s.classList.remove("clubs-list__ul_active")}))}()})();
