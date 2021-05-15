@@ -8,15 +8,40 @@ export default function formSend(id) {
     form = formBlock.querySelector('form'),
     formContent = formBlock.querySelector('.form-content');
 
+  loadingMessage.style.marginTop = '10px';
+
   if (form) {
+    const tel = form.querySelector('input[type="tel"]'),
+      privacy = form.querySelector('input[type="checkbox"]'),
+      telPattern = /^\+7([-()]*\d){10}$/;
+
+    form.appendChild(loadingMessage);
+
     form.addEventListener('submit', event => {
       event.preventDefault();
 
       let flag = true;
 
+      if (!privacy.checked) {
+        flag = false;
+        loadingMessage.innerHTML = `
+            <p class="error-message">Необходимо согласиться с обработкой персональных данных</p>
+            `;
+      }
+
+      if (!telPattern.test(tel.value)) {
+        flag = false;
+        loadingMessage.innerHTML = `
+            <p class="error-message">Укажите телефон в формате: +7(999)999-99-99</p>
+            `;
+      }
+
       form.querySelectorAll('input').forEach(item => {
         if (!item.value) {
           flag = false;
+          loadingMessage.innerHTML = `
+            <p class="error-message">Необходимо заполнить все поля!</p>
+            `;
         }
       });
 
@@ -28,7 +53,6 @@ export default function formSend(id) {
             <div class='sk-bounce-3 sk-child'></div>
           </div>
           `;
-        form.appendChild(loadingMessage);
 
         const formData = new FormData(form),
           body = {};
@@ -70,10 +94,6 @@ export default function formSend(id) {
             }, 3000);
           });
       } else {
-        loadingMessage.innerHTML = `
-          <p class="status-message">'Необходимо заполнить все поля!'</p>
-          `;
-
         setTimeout(() => {
           loadingMessage.innerHTML = ``;
         }, 3000);
