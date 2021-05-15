@@ -1418,15 +1418,26 @@ nav.popup-menu .close-menu-btn img {
   background: url(../images/gallery-bg.png) left center no-repeat;
 }
 #gallery .gallery-slider {
+  position: relative;
   padding-left: 75px;
   padding-right: 75px;
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
+  height: 404.45px;
 }
 #gallery .gallery-slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
   margin: 0 auto !important;
   width: 100%;
+  opacity: 0;
+  transition: all ease-out 0.5s;
+}
+#gallery .gallery-slider .slide_active {
+  opacity: 1;
+  transition: all ease-out 0.5s;
 }
 #gallery .gallery-slider .slider-arrow {
   position: absolute;
@@ -1454,6 +1465,20 @@ nav.popup-menu .close-menu-btn img {
   left: 50%;
   margin-left: -65px;
   bottom: 5%;
+  display: flex;
+}
+#gallery .gallery-slider .slider-dots .slider-dots__item {
+  width: 20px;
+  height: 7px;
+  background-color: #fff;
+  border: 1px solid #f4c71b;
+  cursor: pointer;
+}
+#gallery .gallery-slider .slider-dots .slider-dots__item:not(:last-child) {
+  margin-right: 10px;
+}
+#gallery .gallery-slider .slider-dots .slider-dots__item_active {
+  background-color: #f4c71b;
 }
 #cards {
   padding-bottom: 4rem;

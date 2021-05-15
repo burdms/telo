@@ -7,6 +7,7 @@ import sliderMain from './modules/sliderMain';
 import formSend from './modules/formSend';
 import inputCheck from './modules/inputCheck';
 import sliderServices from './modules/sliderServices';
+import sliderGallery from './modules/sliderGallery';
 
 // Выбор клуба, бесплатный визит, заказать звонок
 head();
@@ -23,7 +24,10 @@ if (document.body.classList.contains('js-main-page')) {
   inputCheck('banner-form');
   formSend('banner-form');
 
-  // Слайдер со всеми услугами клубов
+  // Слайдер со всеми услугами клубов на главной странице
   sliderServices();
+
+  // Слайдер с фотографиями на главной странице
+  sliderGallery();
 }
 
