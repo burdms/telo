@@ -1,21 +1,25 @@
-import popupClose from './popupClose';
-
 export default function formSend(id) {
   const successMessage = 'Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.',
     errorMessage = 'Упс! Что-то пошло не так... Перезагрузите страницу и попробуйте еще раз',
-    loadingMessage = document.createElement('div'),
-    formBlock = document.getElementById(id),
-    form = formBlock.querySelector('form'),
-    formContent = formBlock.querySelector('.form-content');
+    // loadingMessage = document.createElement('div'),
+    form = document.getElementById(id),
+    formContent = form.closest('.form-content');
 
-  loadingMessage.style.marginTop = '10px';
+  let loadingMessage;
+
+  if (!form.querySelector('.js-loading-message')) {
+    loadingMessage = document.createElement('div');
+    loadingMessage.classList.add('js-loading-message');
+    loadingMessage.style.marginTop = '10px';
+    form.appendChild(loadingMessage);
+  } else {
+    loadingMessage = form.querySelector('.js-loading-message');
+  }
 
   if (form) {
     const tel = form.querySelector('input[type="tel"]'),
       privacy = form.querySelector('input[type="checkbox"]'),
       telPattern = /^\+7([-()]*\d){10}$/;
-
-    form.appendChild(loadingMessage);
 
     form.addEventListener('submit', event => {
       event.preventDefault();
@@ -73,11 +77,11 @@ export default function formSend(id) {
               <p class="status-message">${successMessage}</p>
               `;
 
-            setTimeout(() => {
-              if (formBlock.closest('.popup')) {
-                popupClose(formBlock);
-              }
-            }, 3000);
+            if (formContent.closest('.popup')) {
+              setTimeout(() => {
+                formContent.closest('.popup').classList.remove('popup_active');
+              }, 3000);
+            }
           })
           .catch(error => {
             form.removeChild(loadingMessage);
@@ -87,15 +91,15 @@ export default function formSend(id) {
               `;
             console.error(error);
 
-            setTimeout(() => {
-              if (formBlock.closest('.popup')) {
-                popupClose(formBlock);
-              }
-            }, 3000);
+            if (formContent.closest('.popup')) {
+              setTimeout(() => {
+                formContent.closest('.popup').classList.remove('popup_active');
+              }, 3000);
+            }
           });
       } else {
         setTimeout(() => {
-          loadingMessage.innerHTML = ``;
+          loadingMessage.innerHTML = '';
         }, 3000);
       }
     });
