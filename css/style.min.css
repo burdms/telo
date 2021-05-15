@@ -1336,18 +1336,40 @@ nav.popup-menu .close-menu-btn img {
   padding: 5px 5px 5px 18px;
   margin-right: 5px;
 }
+
+
 .services-slider {
   display: flex;
+  position: relative;
   margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
+  overflow: hidden;
+}
+.services-slider__wrapper {
+  display: flex;
+  transition: all ease-out 0.3s;
 }
 .services-slider .slide {
+  flex-shrink: 0;
   text-align: center;
-  margin-right: 6px;
-  margin-left: 6px;
+  margin-right: 8px;
+  margin-left: 7px;
   width: 210px;
 }
+.services-slider .slide:first-child {
+  margin-left: 0;
+}
+.services-slider .slide:last-child {
+  margin-right: 0;
+}
+.slider-arrow_inactive {
+  display: none;
+  cursor: auto;
+  pointer-events: none;
+}
+
+
 .services-slider .slide img {
   margin: 0 auto 19px;
 }
