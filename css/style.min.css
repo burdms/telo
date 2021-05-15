@@ -1962,6 +1962,7 @@ p.personal-data input[type="checkbox"]:checked + label:before {
   margin-top: 30px;
 }
 
+/* Дополнительные классы для открытых/закрытых блоков вроде меню, попапов и т.д. */
 .clubs-list__ul_active {
   display: block !important;
 }
@@ -1970,10 +1971,59 @@ p.personal-data input[type="checkbox"]:checked + label:before {
   display: block;
 }
 
+/* Запрет прокрутки страницы, когда открыто модальное окно */
 .js-no-scroll {
   overflow-y: hidden;
 }
 
+/* Анимация отправки сообщения */
+.sk-three-bounce {
+  width: 4em;
+  margin: auto;
+  text-align: center;
+}
+.sk-three-bounce .sk-child {
+  width: 1em;
+  height: 1em;
+  background-color: #ffd11a;
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-three-bounce 1.4s ease-in-out 0s infinite both;
+          animation: sk-three-bounce 1.4s ease-in-out 0s infinite both;
+}
+.sk-three-bounce .sk-bounce-1 {
+  -webkit-animation-delay: -0.32s;
+          animation-delay: -0.32s;
+}
+.sk-three-bounce .sk-bounce-2 {
+  -webkit-animation-delay: -0.16s;
+          animation-delay: -0.16s;
+}
+@-webkit-keyframes sk-three-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+@keyframes sk-three-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Стили сообщения о статусе отправки */
+.status-message {
+  font-size: 20px;
+  width: 90%;
+  color: #fff;
+  font-weight: 500;
+  margin-top: 30px;
+}
 
 @media only screen and (max-width: 1199px) {
   .services-slider .slider-arrow.prev {
