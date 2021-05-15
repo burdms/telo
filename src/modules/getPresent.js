@@ -1,4 +1,4 @@
-import popupOpen from "./popupOpen";
+import popupClose from "./popupClose";
 
 export default function getPresent() {
   const openPresent = event => {
@@ -9,7 +9,8 @@ export default function getPresent() {
 
       document.querySelector('.fixed-gift').style.display = 'none';
 
-      popupOpen('gift');
+      document.getElementById('gift').classList.add('popup_active');
+      popupClose('gift');
     }
   };
 

@@ -1,12 +1,15 @@
 import inputCheck from './inputCheck';
-import form from './form';
 import formSend from './formSend';
+import popupClose from './popupClose';
 
-export default function popupOpen(id) {
+export default function popupOpen(popupID) {
+  const popup = document.getElementById(popupID),
+    id = popup.querySelector('form').getAttribute('id');
+
   // document.querySelector('html').classList.add('js-no-scroll');
-  document.getElementById(id).classList.add('popup_active');
+  popup.classList.add('popup_active');
 
   inputCheck(id);
-  form(id);
+  popupClose(popupID);
   formSend(id);
 }
