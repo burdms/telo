@@ -1,9 +1,11 @@
+import popupClose from "./popupClose";
+
 export default function formSend(id) {
-  const successMessage = 'Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.',
-    errorMessage = 'Упс! Что-то пошло не так... Перезагрузите страницу и попробуйте еще раз',
-    // loadingMessage = document.createElement('div'),
+  const successMessage = 'Ваша заявка отправлена.<br>Мы свяжемся с вами в ближайшее время.',
+    errorMessage = 'Упс! Что-то пошло не так...<br>Перезагрузите страницу и попробуйте еще раз',
     form = document.getElementById(id),
-    formContent = form.closest('.form-content');
+    formContent = form.closest('.form-content'),
+    popupThanks = document.getElementById('thanks');
 
   let loadingMessage;
 
@@ -72,30 +74,43 @@ export default function formSend(id) {
             }
 
             form.removeChild(loadingMessage);
-            formContent.style.justifyContent = 'center';
-            formContent.innerHTML = `
-              <p class="status-message">${successMessage}</p>
-              `;
 
-            if (formContent.closest('.popup')) {
+            if (formContent) {
+              formContent.style.justifyContent = 'center';
+              formContent.innerHTML = `
+                <p class="status-message">${successMessage}</p>
+                `;
+
               setTimeout(() => {
                 formContent.closest('.popup').classList.remove('popup_active');
               }, 3000);
+            } else {
+              form.reset();
+              popupThanks.classList.add('popup_active');
+              popupClose('thanks');
+              popupThanks.querySelector('p').innerHTML = successMessage;
             }
           })
           .catch(error => {
             form.removeChild(loadingMessage);
-            formContent.style.justifyContent = 'center';
-            formContent.innerHTML = `
-              <p class="status-message">${errorMessage}</p>
-              `;
-            console.error(error);
 
-            if (formContent.closest('.popup')) {
+            if (formContent) {
+              formContent.style.justifyContent = 'center';
+              formContent.innerHTML = `
+                <p class="status-message">${errorMessage}</p>
+                `;
+
               setTimeout(() => {
                 formContent.closest('.popup').classList.remove('popup_active');
               }, 3000);
+            } else {
+              form.reset();
+              popupThanks.classList.add('popup_active');
+              popupClose('thanks');
+              popupThanks.querySelector('p').innerHTML = errorMessage;
             }
+
+            console.error(error);
           });
       } else {
         setTimeout(() => {
