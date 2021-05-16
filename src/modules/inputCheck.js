@@ -9,8 +9,12 @@ export default function inputCheck(id) {
         input.value = input.value.replace(/[^0-9+()-]/g, '');
       }
 
-      if (input.type === 'text') {
+      if (input.type === 'text' && input.getAttribute('placeholder') !== 'Промокод') {
         input.value = input.value.replace(/[^а-яё -]/gi, '');
+      }
+
+      if (input.getAttribute('placeholder') === 'Промокод') {
+        input.value = input.value.replace(/[^а-яё0-9]/gi, '');
       }
     });
 
@@ -19,8 +23,12 @@ export default function inputCheck(id) {
       item.value = item.value.replace(/ +/g, ' ');
       item.value = item.value.replace(/^(-| )+/g, '');
       item.value = item.value.replace(/(-| )$/g, '');
-      item.value = item.value.replace(/^./g, char => char.toUpperCase());
-      item.value = item.value.replace(/(?!^).*/, char => char.toLowerCase());
+      if (item.getAttribute('placeholder') === 'Промокод') {
+        item.value = item.value.replace(/./g, char => char.toUpperCase());
+      } else {
+        item.value = item.value.replace(/^./g, char => char.toUpperCase());
+        item.value = item.value.replace(/(?!^).*/, char => char.toLowerCase());
+      }
     });
   });
 }
