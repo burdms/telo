@@ -34,5 +34,5 @@ if (document.body.classList.contains('js-main-page')) {
   // Калькулятор на главной странице
   calculator();
   inputCheck('card_order');
-  formSend('card_order');
+  formSend('card_order', true);
 }

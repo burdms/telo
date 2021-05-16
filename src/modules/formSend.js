@@ -1,6 +1,6 @@
 import popupClose from "./popupClose";
 
-export default function formSend(id) {
+export default function formSend(id, promocode = false) {
   const successMessage = 'Ваша заявка отправлена.<br>Мы свяжемся с вами в ближайшее время.',
     errorMessage = 'Упс! Что-то пошло не так...<br>Перезагрузите страницу и попробуйте еще раз',
     form = document.getElementById(id),
@@ -43,7 +43,7 @@ export default function formSend(id) {
       }
 
       form.querySelectorAll('input').forEach(item => {
-        if (!item.value) {
+        if (!item.value && item.getAttribute('placeholder') !== 'Промокод') {
           flag = false;
           loadingMessage.innerHTML = `
             <p class="error-message">Необходимо заполнить все поля!</p>
@@ -67,13 +67,18 @@ export default function formSend(id) {
           body[key] = value;
         });
 
+        if (promocode) {
+          body['promocode'] = form.querySelector('.price-message').querySelector('input').value;
+          body['sum'] = form.querySelector('#price-total').textContent;
+        }
+
         postData(body)
           .then(response => {
             if (response.status !== 200) {
               throw new Error('Статус отправки не равен 200');
             }
 
-            form.removeChild(loadingMessage);
+            loadingMessage.innerHTML = '';
 
             if (formContent) {
               formContent.style.justifyContent = 'center';
@@ -92,7 +97,7 @@ export default function formSend(id) {
             }
           })
           .catch(error => {
-            form.removeChild(loadingMessage);
+            loadingMessage.innerHTML = '';
 
             if (formContent) {
               formContent.style.justifyContent = 'center';
