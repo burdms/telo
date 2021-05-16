@@ -2,6 +2,7 @@
 'use strict';
 
 import head from './modules/head';
+import headMenuMobile from './modules/headMenuMobile';
 import getPresent from './modules/getPresent';
 import sliderMain from './modules/sliderMain';
 import formSend from './modules/formSend';
@@ -12,6 +13,9 @@ import calculator from './modules/calculator';
 
 // Выбор клуба, бесплатный визит, заказать звонок
 head();
+
+// Бургер-меню на экранах меньше 768пх
+headMenuMobile();
 
 // Кнопка получить подарок
 getPresent();

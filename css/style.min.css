@@ -974,6 +974,12 @@ header nav.top-menu {
   );
   background-image: linear-gradient(to right, #230a16 0%, #0c0b15 100%);
 }
+.top-menu_fixed {
+  position: fixed !important;
+}
+.head-slider_menu-fixed {
+    margin-top: 60px;
+}
 header nav.top-menu .menu-button {
   text-align: right;
 }
