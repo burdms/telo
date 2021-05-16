@@ -1845,12 +1845,14 @@ footer .footer-bottom .right .socials .social-icon:hover a {
   z-index: 200;
   font-size: 28px;
   color: #1e1c34;
-  display: block;
   width: 35px;
   height: 35px;
   background-color: #ffd11a;
   text-align: center;
   border-radius: 50%;
+}
+.totop_active {
+  display: block !important;
 }
 .popup {
   display: none;

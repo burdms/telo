@@ -10,6 +10,7 @@ import inputCheck from './modules/inputCheck';
 import sliderServices from './modules/sliderServices';
 import sliderGallery from './modules/sliderGallery';
 import calculator from './modules/calculator';
+import toTop from './modules/toTop';
 
 // Выбор клуба, бесплатный визит, заказать звонок
 head();
@@ -33,6 +34,9 @@ sliderGallery();
 // Перезвонить из футера
 inputCheck('footer_form');
 formSend('footer_form');
+
+// Кнопка "наверх"
+toTop();
 
 // Только главная страница
 if (document.body.classList.contains('js-main-page')) {
