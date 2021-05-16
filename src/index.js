@@ -40,3 +40,10 @@ if (document.body.classList.contains('js-main-page')) {
   inputCheck('card_order');
   formSend('card_order', true);
 }
+
+// Только страницы клубов
+if (document.body.classList.contains('js-club-page')) {
+  // Заказ карты на странице клуба
+  inputCheck('card_order');
+  formSend('card_order');
+}
