@@ -42,20 +42,23 @@ export default function formSend(id, promocode = false) {
             `;
       }
 
+      if (form.id === 'footer_form') {
+        const clubs = form.querySelectorAll('.club input:checked');
+
+        if (clubs.length === 0) {
+          flag = false;
+          loadingMessage.innerHTML = `
+            <p class="error-message">Необходимо выбрать клуб!</p>
+            `;
+        }
+      }
+
       form.querySelectorAll('input').forEach(item => {
         if (!item.value && item.getAttribute('placeholder') !== 'Промокод') {
           flag = false;
-
-          if (form.id === 'footer_form') {
-            loadingMessage.innerHTML = `
-              <p class="error-message">Необходимо выбрать клуб и указать номер телефона!</p>
-              `;
-          } else {
-            loadingMessage.innerHTML = `
-              <p class="error-message">Необходимо заполнить все поля!</p>
-              `;
-          }
-
+          loadingMessage.innerHTML = `
+            <p class="error-message">Необходимо заполнить все поля!</p>
+            `;
         }
       });
 
