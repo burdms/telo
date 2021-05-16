@@ -1,7 +1,9 @@
 export default function headMenuMobile() {
   const menuWrapper = document.querySelector('.top-menu'),
     menuWrapperOffset = menuWrapper.offsetTop,
-    headSlider = document.querySelector('.head-slider');
+    headSlider = document.querySelector('.head-slider'),
+    menu = document.querySelector('.popup-menu'),
+    menuClose = menu.querySelector('.close-menu-btn img');
 
   if (screen.availWidth <= 768) {
     window.addEventListener('scroll', () => {
@@ -15,6 +17,17 @@ export default function headMenuMobile() {
         headSlider.classList.remove('head-slider_menu-fixed');
       }
     });
-    // burgerMenu.style.position = 'sticky';
   }
+
+  document.addEventListener('click', event => {
+    const target = event.target;
+
+    if (target.closest('.menu-button')) {
+      menu.classList.add('popup-menu_active');
+    }
+
+    if (target === menuClose || target.closest('.scroll')) {
+      menu.classList.remove('popup-menu_active');
+    }
+  });
 }

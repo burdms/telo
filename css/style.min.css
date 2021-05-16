@@ -1065,6 +1065,9 @@ nav.popup-menu {
   left: 0;
   top: 0;
 }
+nav.popup-menu_active {
+  display: flex;
+}
 nav.popup-menu ul {
   margin: auto;
 }
