@@ -28,7 +28,7 @@ export default function formSend(id, promocode = false) {
 
       let flag = true;
 
-      if (!privacy.checked) {
+      if (privacy && !privacy.checked) {
         flag = false;
         loadingMessage.innerHTML = `
             <p class="error-message">Необходимо согласиться с обработкой персональных данных</p>
@@ -45,9 +45,17 @@ export default function formSend(id, promocode = false) {
       form.querySelectorAll('input').forEach(item => {
         if (!item.value && item.getAttribute('placeholder') !== 'Промокод') {
           flag = false;
-          loadingMessage.innerHTML = `
-            <p class="error-message">Необходимо заполнить все поля!</p>
-            `;
+
+          if (form.id === 'footer_form') {
+            loadingMessage.innerHTML = `
+              <p class="error-message">Необходимо выбрать клуб и указать номер телефона!</p>
+              `;
+          } else {
+            loadingMessage.innerHTML = `
+              <p class="error-message">Необходимо заполнить все поля!</p>
+              `;
+          }
+
         }
       });
 

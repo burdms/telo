@@ -26,6 +26,10 @@ sliderServices();
 // Слайдер с фотографиями
 sliderGallery();
 
+// Перезвонить из футера
+inputCheck('footer_form');
+formSend('footer_form');
+
 // Только главная страница
 if (document.body.classList.contains('js-main-page')) {
   // Слайдер на первом экране главной страницы
