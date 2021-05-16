@@ -11,6 +11,7 @@ import sliderServices from './modules/sliderServices';
 import sliderGallery from './modules/sliderGallery';
 import calculator from './modules/calculator';
 import toTop from './modules/toTop';
+import smoothScroll from './modules/smoothScroll';
 
 // Выбор клуба, бесплатный визит, заказать звонок
 head();
@@ -37,6 +38,9 @@ formSend('footer_form');
 
 // Кнопка "наверх"
 toTop();
+
+// Плавный скролл
+smoothScroll();
 
 // Только главная страница
 if (document.body.classList.contains('js-main-page')) {
